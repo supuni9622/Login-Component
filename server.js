@@ -1,16 +1,18 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const { createPool } = require("mysql");
 
 app.use(bodyParser.json());
+const PORT = process.env.PORT || 5000;
 
 // MySQL Database POOL connection
 const pool = createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "loginservicedb",
+    host: process.env.HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DB,
     connectionLimit: 10
     });
 
@@ -26,6 +28,6 @@ app.get("/", (req, res)=>{
     });
 });
 
-app.listen(5000, (req, res)=>{
-    console.log("Server is listening on Port 5000");
+app.listen(PORT, (req, res)=>{
+    console.log(`Server is listening on Port ${PORT}`);
 });

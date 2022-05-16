@@ -4,6 +4,7 @@
   "description": "Authentication with react, node and mysql",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,8 +20,10 @@
   "homepage": "https://github.com/supuni9622/Login-Component#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mysql": "^2.18.1",
+    "nodeman": "^1.1.2",
     "nodemon": "^2.0.16"
   }
 }
