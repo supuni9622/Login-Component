@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const { createPool } = require("mysql");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // app.use(express.json());
 // app.use(bodyParser.urlencoded({
@@ -56,7 +57,13 @@ app.post("/login", (req, res)=> {
         }else{
             if(result.length > 0){
                 if(bcrypt.compareSync(req.body.password, result[0].Password)){
-                    res.send("User authenticated");
+                    const token = jwt.sign({userName : req.body.userName}, 'shhh');
+
+                    const response = {
+                        token: token, 
+                        message : 'User authenticated'
+                    };
+                    res.send(response);
                 }else{
                     res.send("Incorrect credentials!");
                 }
